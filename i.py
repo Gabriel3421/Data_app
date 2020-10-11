@@ -4,6 +4,8 @@ from joblib import load
 import streamlit as st
 import pandas as pd
 import numpy as np
+from sklearn import datasets
+from sklearn.ensemble import RandomForestClassifier
 
 clf = load('Mlp_classificador.joblib')
 reg = load('Mlp_regressao.joblib')
