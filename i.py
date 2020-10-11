@@ -3,12 +3,13 @@ from colunas import *
 from joblib import load
 import streamlit as st
 import pandas as pd
-from sklearn import datasets
-from sklearn.ensemble import RandomForestClassifier
+import numpy as np
 
 clf = load('Mlp_classificador.joblib')
+reg = load('Mlp_regressao.joblib')
 
-st.sidebar.header("Input Params")
+st.sidebar.header("Parâmetros do acidente")
+
 causa = st.sidebar.selectbox(
     'Causa do Acidente',
     ('Outras',
@@ -41,7 +42,7 @@ causa = st.sidebar.selectbox(
       'Ingestão de álcool e/ou substâncias psicoativas pelo pedestre')
 )
 tipoacidente = st.sidebar.selectbox(
-    'Tipo Acidente',
+    'Tipo do Acidente',
     ('Atropelamento de Animal',
        'Atropelamento de Pedestre',
        'Atropelamento de animal',
@@ -113,7 +114,7 @@ tipopista = st.sidebar.selectbox(
 
 
 tracado = st.sidebar.selectbox(
-    'Tracado_via',
+    'Traçado da Via',
     (
         'Reta',
         'Curva',
@@ -129,7 +130,7 @@ tracado = st.sidebar.selectbox(
 )
 
 solo = st.sidebar.selectbox(
-    'Uso_solo',
+    'Área',
     (
         'Rural',
         'Urbano',
@@ -148,14 +149,14 @@ quant_mortos = st.sidebar.number_input(
     0
 )
 quant_veiculos = st.sidebar.number_input(
-    'Veiculos',
+    'Quantidade de Veículos',
     0,
     100,
     0
 )
 
 tipos_veiculos = st.sidebar.multiselect(
-    'Tipos de veiculos',
+    'Tipos de Veículos',
     (
         'Automovel',
         'Bicicleta',
@@ -181,15 +182,7 @@ if (len(tipos_veiculos) > quant_veiculos):
     st.sidebar.warning('Selecione a mesma quantidade dos veiculos envolvidos, caso selecione um numero maior somente os '+ str(quant_veiculos) +' primeiros seram contabilizados.')
 
 def tp_automoveis(tipos_veiculos):
-    automovel, bicicleta, carrinhodemao, carroça = 0,0,0,0
-    chassi, ciclomotor,microonibus,motocicletas = 0,0,0,0
-    motorHome,reboque,semi_reboque,sidecar = 0,0,0,0
-    trembonde, utilitario, veiculomediogrande,onibus,trator,outros = 0,0,0,0,0,0
-
-    tpv = [automovel, bicicleta, carrinhodemao, carroça,
-            chassi, ciclomotor,microonibus,motocicletas,
-            motorHome,reboque,semi_reboque,sidecar,
-            trembonde, utilitario, veiculomediogrande,onibus,trator,outros]
+    tpv = np.zeros(18, dtype='int')
 
     tpv2 = ['Automovel',
             'Bicicleta',
@@ -220,7 +213,7 @@ def tp_automoveis(tipos_veiculos):
     return tpv
 
 tpv = tp_automoveis(tipos_veiculos)
-datas = {
+data_classificacao = {
     'causa_acidente': causa_acidente[causa],
     'tipo_acidente': tipo_acidente[tipoacidente],
     'fase_dia': fase_dia[fasedia],
@@ -251,25 +244,46 @@ datas = {
     'veiculo de medio-grande':tpv[14],
     'Ônibus':tpv[15],
     'Trator':tpv[16],
-    'Outros':tpv[17]
-    
+    'Outros':tpv[17] 
+}
+data_regressao = {
+    'tipo_acidente': tipo_acidente[tipoacidente],
+    'fase_dia': fase_dia[fasedia],
+    'sentido_via': sentido_via[sentidovia],
+    'condicao_metereologica': condicao_metereologica[metereologica],
+    'tipo_pista': tipo_pista[tipopista],
+    'tracado_via': tracado_via[tracado],
+    'uso_solo': uso_solo[solo],
+    'veiculos': quant_veiculos,
 }
 
-features = pd.DataFrame(datas,index=[0])
-print(features)
+features_classificacao = pd.DataFrame(data_classificacao,index=[0])
+features_regressao = pd.DataFrame(data_regressao,index=[0])
 
-st.header("Classificador")
 
-prediction = clf.predict(features)
-prediction_proba = clf.predict_proba(features)
+st.markdown('# Classificador')
+st.markdown('### Caracteristicas usadas para predição:')
+st.warning('> Causa do Acidente, Tipo do Acidente, Fase do dia, Sentido da Via, Condição Metereológica, Tipo da Pista,	Traçado da Via, Área, Pessoas, Mortos, Quantidade de Veiculos,	Tipos de Veiculos.')
+
+prediction = clf.predict(features_classificacao)
+prediction_proba = clf.predict_proba(features_classificacao)
 print(prediction)
 print(prediction_proba)
-st.subheader("Predriction")
+st.subheader("Previsão")
 st.write(pd.DataFrame({'Conclusao': prediction}))
-st.subheader("Predriction probability")
+st.subheader("Previsão probabilística")
 st.write(pd.DataFrame(
     {
         'Com Vítimas Fatais': prediction_proba[0][0],
         'Com Vítimas Feridas': prediction_proba[0][1],
         'Sem Vítimas': prediction_proba[0][2],
     }, index=[0]))
+
+st.markdown('# Regressão')
+st.markdown('### Caracteristicas usadas para predição:')
+st.warning('> Tipo do Acidente, Fase do dia, Sentido da Via, Condição Metereológica, Tipo da Pista, Traçado da Via, Área, Quantidade de Veiculos.')
+
+prediction2 = reg.predict(features_regressao)
+print(prediction2)
+st.subheader("Previsão")
+st.write(pd.DataFrame({'Quantidade de pessoas estimada': prediction2}))
