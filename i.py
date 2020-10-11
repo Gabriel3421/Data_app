@@ -96,7 +96,6 @@ fasedia = st.sidebar.selectbox(
       'Plena noite',
       'Anoitecer',
       'Amanhecer',
-      'Plena Noite',
       'Valor não definido')
 )
 
