@@ -260,7 +260,7 @@ features_regressao = pd.DataFrame(data_regressao,index=[0])
 
 st.markdown('# Classificador')
 st.markdown('### Caracteristicas usadas para predição:')
-st.warning('> Causa do Acidente, Tipo do Acidente, Fase do dia, Sentido da Via, Condição Metereológica, Tipo da Pista,	Traçado da Via, Área, Pessoas, Mortos, Quantidade de Veiculos,	Tipos de Veiculos.')
+st.warning('> Causa do Acidente, Tipo do Acidente, Fase do dia, Sentido da Via, Condição Metereológica, Tipo da Pista,	Traçado da Via, Área, Pessoas, Quantidade de Veiculos,	Tipos de Veiculos.')
 
 prediction = clf.predict(features_classificacao)
 prediction_proba = clf.predict_proba(features_classificacao)
