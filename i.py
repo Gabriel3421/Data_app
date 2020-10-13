@@ -15,26 +15,26 @@ st.sidebar.header("Parâmetros do acidente")
 causa = st.sidebar.selectbox(
     'Causa do Acidente',
     ('Agressão Externa',
- 'Animais na Pista'
+ 'Animais na Pista',
  'Avarias e/ou desgaste excessivo no pneu',
  'Carga excessiva e/ou mal acondicionada',
  'Condutor Dormindo',
- 'Defeito Mecânico no Veículo'
- 'Defeito na Via'
+ 'Defeito Mecânico no Veículo',
+ 'Defeito na Via',
  'Deficiência ou não Acionamento do Sistema de Iluminação/Sinalização do Veículo',
- 'Desobediência à sinalização'
+ 'Desobediência à sinalização',
  'Desobediência às normas de trânsito pelo condutor',
  'Desobediência às normas de trânsito pelo pedestre',
  'Dormindo',
  'Falta de Atenção do Pedestre',
  'Falta de Atenção à Condução',
- 'Falta de atenção'
+ 'Falta de atenção',
  'Fenômenos da Natureza',
  'Ingestão de Substâncias Psicoativas',
- 'Ingestão de Álcool'
+ 'Ingestão de Álcool',
  'Ingestão de álcool e/ou substâncias psicoativas pelo pedestre',
  'Mal Súbito',
- 'Não guardar distância de segurança'
+ 'Não guardar distância de segurança',
  'Objeto estático sobre o leito carroçável',
  'Pista Escorregadia',
  'Restrição de Visibilidade',
