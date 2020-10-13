@@ -14,64 +14,61 @@ st.sidebar.header("Parâmetros do acidente")
 
 causa = st.sidebar.selectbox(
     'Causa do Acidente',
-    ('Outras',
-     'Animais na Pista',
-      'Não guardar distância de segurança',
-      'Falta de atenção',
-      'Velocidade Incompatível',
-      'Desobediência à sinalização',
-      'Defeito Mecânico no Veículo',
-      'Ingestão de Álcool',
-      'Dormindo',
-      'Ultrapassagem Indevida',
-      'Defeito na Via',
-      'Falta de Atenção à Condução',
-      'Desobediência às normas de trânsito pelo condutor',
-      'Condutor Dormindo',
-      'Falta de Atenção do Pedestre',
-      'Pista Escorregadia',
-      'Avarias e/ou desgaste excessivo no pneu',
-      'Sinalização da via insuficiente ou inadequada',
-      'Mal Súbito',
-      'Carga excessiva e/ou mal acondicionada',
-      'Restrição de Visibilidade',
-      'Objeto estático sobre o leito carroçável',
-      'Deficiência ou não Acionamento do Sistema de Iluminação/Sinalização do Veículo',
-      'Fenômenos da Natureza',
-      'Ingestão de Substâncias Psicoativas',
-      'Agressão Externa',
-      'Desobediência às normas de trânsito pelo pedestre',
-      'Ingestão de álcool e/ou substâncias psicoativas pelo pedestre')
+    ('Agressão Externa',
+ 'Animais na Pista'
+ 'Avarias e/ou desgaste excessivo no pneu',
+ 'Carga excessiva e/ou mal acondicionada',
+ 'Condutor Dormindo',
+ 'Defeito Mecânico no Veículo'
+ 'Defeito na Via'
+ 'Deficiência ou não Acionamento do Sistema de Iluminação/Sinalização do Veículo',
+ 'Desobediência à sinalização'
+ 'Desobediência às normas de trânsito pelo condutor',
+ 'Desobediência às normas de trânsito pelo pedestre',
+ 'Dormindo',
+ 'Falta de Atenção do Pedestre',
+ 'Falta de Atenção à Condução',
+ 'Falta de atenção'
+ 'Fenômenos da Natureza',
+ 'Ingestão de Substâncias Psicoativas',
+ 'Ingestão de Álcool'
+ 'Ingestão de álcool e/ou substâncias psicoativas pelo pedestre',
+ 'Mal Súbito',
+ 'Não guardar distância de segurança'
+ 'Objeto estático sobre o leito carroçável',
+ 'Pista Escorregadia',
+ 'Restrição de Visibilidade',
+ 'Sinalização da via insuficiente ou inadequada',
+ 'Ultrapassagem Indevida',
+ 'Velocidade Incompatível',
+ 'Outras')
 )
+
 tipoacidente = st.sidebar.selectbox(
     'Tipo do Acidente',
-    ('Atropelamento de Animal',
-       'Atropelamento de Pedestre',
-       'Atropelamento de animal',
-       'Atropelamento de pessoa',
-       'Capotamento',
-       'Colisão Transversal',
-       'Colisão com bicicleta',
-       'Colisão com objeto em movimento',
-       'Colisão com objeto estático',
-       'Colisão com objeto fixo',
-       'Colisão com objeto móvel',
-       'Colisão frontal',
-       'Colisão lateral',
-       'Colisão transversal',
-       'Colisão traseira',
-       'Danos Eventuais',
-       'Danos eventuais',
-       'Derramamento de Carga',
-       'Derramamento de carga',
-       'Engavetamento',
-       'Incêndio',
-       'Queda de motocicleta / bicicleta / veículo',
-       'Queda de ocupante de veículo',
-       'Saída de Pista',
-       'Saída de leito carroçável',
-       'Tombamento')
-)
+    ('Atropelamento de animal',
+ 'Atropelamento de pessoa',
+ 'Capotamento',
+ 'Colisão Transversal',
+ 'Colisão com bicicleta',
+ 'Colisão com objeto em movimento',
+ 'Colisão com objeto estático',
+ 'Colisão com objeto fixo',
+ 'Colisão com objeto móvel',
+ 'Colisão frontal',
+ 'Colisão lateral',
+ 'Colisão transversal',
+ 'Colisão traseira',
+ 'Danos eventuais',
+ 'Derramamento de carga',
+ 'Engavetamento',
+ 'Incêndio',
+ 'Queda de motocicleta / bicicleta / veículo',
+ 'Queda de ocupante de veículo',
+ 'Saída de Pista',
+ 'Saída de leito carroçável',
+ 'Tombamento')
+        )
 
 metereologica = st.sidebar.selectbox(
     'Condição Metereologica',
@@ -80,13 +77,11 @@ metereologica = st.sidebar.selectbox(
       'Nublado',
       'Sol',
       'Nevoeiro/neblina',
-      'Ignorada',
       'Granizo',
       'Vento',
       'Neve',
-      'Garoa/Chuvisco',
-      'Céu Claro',
-      'Nevoeiro/Neblina')
+      'Garoa/Chuvisco'
+      )
 )
 
 
@@ -95,8 +90,8 @@ fasedia = st.sidebar.selectbox(
     ('Pleno dia',
       'Plena noite',
       'Anoitecer',
-      'Amanhecer',
-      'Valor não definido')
+      'Amanhecer'
+    )
 )
 
 
@@ -143,12 +138,7 @@ quant_pessoas = st.sidebar.number_input(
     100,
     0
 )
-quant_mortos = st.sidebar.number_input(
-    'Mortos',
-    0,
-    100,
-    0
-)
+
 quant_veiculos = st.sidebar.number_input(
     'Quantidade de Veículos',
     0,
@@ -159,50 +149,44 @@ quant_veiculos = st.sidebar.number_input(
 tipos_veiculos = st.sidebar.multiselect(
     'Tipos de Veículos',
     (
-        'Automovel',
-        'Bicicleta',
-        'Carrinho de mao',
-        'Carroça/charrete',
-        'Chassi/Plataforma',
-        'Ciclomotor/Triciclo/Quadriciclo/Motoneta',
-        'Microonibus',
-        'Motocicletas',
-        'MotorHome',
-        'Reboque',
-        'Semi/Reboque',
-        'Trator',
-        'Side/car',
-        'Trem/bonde',
-        'Utilitario',
-        'veiculo de medio/grande',
-        'Onibus',
-        'Outros'
+        'Automóvel',
+        'Bicicleta',            'Caminhonete',
+            'Caminhão',        'Caminhão-Tanque',
+    'Caminhão-Trator',        'Caminhão-trator',
+        'Camioneta',           'Carro-de-mao',
+    'Carroça-charrete',      'Chassi-plataforma',
+        'Ciclomotor',            'Microônibus',
+        'Motocicletas',               'Motoneta',
+        'Motor-Casa',                 'Ônibus',
+        'Quadriciclo',                'Reboque',
+        'Semi-Reboque',               'Side-car',
+'Trator de esteira',     'Trator de esteiras',
+    'Trator de rodas',           'Trator misto',
+        'Trem-bonde',               'Triciclo',
+        'Utilitário',                 'Outros'
      )
 )
 if (len(tipos_veiculos) > quant_veiculos):
     st.sidebar.warning('Selecione a mesma quantidade dos veiculos envolvidos, caso selecione um numero maior somente os '+ str(quant_veiculos) +' primeiros seram contabilizados.')
 
 def tp_automoveis(tipos_veiculos):
-    tpv = np.zeros(18, dtype='int')
+    tpv = np.zeros(29, dtype='int')
 
-    tpv2 = ['Automovel',
-            'Bicicleta',
-            'Carrinho de mao',
-            'Carroça/charrete',
-            'Chassi/Plataforma',
-            'Ciclomotor/Triciclo/Quadriciclo/Motoneta',
-            'Microonibus',
-            'Motocicletas',
-            'MotorHome',
-            'Reboque',
-            'Semi/Reboque',
-            'Side/car',
-            'Trem/bonde',
-            'Utilitario',
-            'veiculo de medio/grande',
-            'Onibus',
-            'Trator',
-            'Outros']
+    tpv2 = ['Automóvel',
+                    'Bicicleta',            'Caminhonete',
+                     'Caminhão',        'Caminhão-Tanque',
+              'Caminhão-Trator',        'Caminhão-trator',
+                    'Camioneta',           'Carro-de-mao',
+             'Carroça-charrete',      'Chassi-plataforma',
+                   'Ciclomotor',            'Microônibus',
+                 'Motocicletas',               'Motoneta',
+                   'Motor-Casa',                 'Outros',
+                  'Quadriciclo',                'Reboque',
+                 'Semi-Reboque',               'Side-car',
+            'Trator de esteira',     'Trator de esteiras',
+              'Trator de rodas',           'Trator misto',
+                   'Trem-bonde',               'Triciclo',
+                   'Utilitário',                 'Ônibus']
 
 
     for i in range(len(tipos_veiculos)):
@@ -214,6 +198,9 @@ def tp_automoveis(tipos_veiculos):
     return tpv
 
 tpv = tp_automoveis(tipos_veiculos)
+
+
+
 data_classificacao = {
     'causa_acidente': causa_acidente[causa],
     'tipo_acidente': tipo_acidente[tipoacidente],
@@ -224,28 +211,37 @@ data_classificacao = {
     'tracado_via': tracado_via[tracado],
     'uso_solo': uso_solo[solo],
     'pessoas': quant_pessoas,
-    'mortos': quant_mortos,
     'veiculos': quant_veiculos,
-    '0':0,
+    '0':1,
     'Automóvel': tpv[0],
-    'Bicicleta':tpv[1],
-    'Carro de mão':tpv[2],
-    'Carro-de-mao':tpv[2],
-    'Carroça-charrete':tpv[3],
-    'Chassi-plataforma':tpv[4],
-    'Ciclomotor-Triciclo-Quadriciclo-Motoneta':tpv[5],
-    'Microônibus':tpv[6],
-    'Motocicletas':tpv[7],
-    'Motor-Casa':tpv[8],
-    'Reboque':tpv[9],
-    'Semi-Reboque':tpv[10],
-    'Side-car':tpv[11],
-    'Trem-bonde':tpv[12],
-    'Utilitário':tpv[13],
-    'veiculo de medio-grande':tpv[14],
-    'Ônibus':tpv[15],
-    'Trator':tpv[16],
-    'Outros':tpv[17] 
+    'Bicicleta': tpv[1],
+    'Caminhonete': tpv[2],
+    'Caminhão': tpv[3],  
+    'Caminhão-Tanque': tpv[4],
+    'Caminhão-Trator': tpv[5],
+    'Caminhão-trator': tpv[6],
+    'Camioneta': tpv[7], 
+    'Carro-de-mao': tpv[8],
+    'Carroça-charrete': tpv[9], 
+    'Chassi-plataforma': tpv[10],
+    'Ciclomotor': tpv[11],
+    'Microônibus': tpv[12],
+    'Motocicletas': tpv[13],
+    'Motoneta': tpv[14],
+    'Motor-Casa': tpv[15],
+    'Outros': tpv[16],
+    'Quadriciclo': tpv[17],
+    'Reboque': tpv[18],
+    'Semi-Reboque': tpv[19],
+    'Side-car': tpv[20],
+    'Trator de esteira': tpv[21],
+    'Trator de esteiras': tpv[22],
+    'Trator de rodas': tpv[23],
+    'Trator misto': tpv[24],
+    'Trem-bonde': tpv[25],
+    'Triciclo': tpv[26],
+    'Utilitário': tpv[27],
+    'Ônibus': tpv[28] 
 }
 data_regressao = {
     'tipo_acidente': tipo_acidente[tipoacidente],
